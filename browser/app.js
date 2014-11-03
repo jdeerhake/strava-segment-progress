@@ -1,5 +1,6 @@
 var Backbone = require( 'backbone' );
-Backbone.$ = require( 'jquery' );
+var $ = require( 'jquery' );
+Backbone.$ = $;
 
 var Athlete = require( './models/athlete' );
 var AthleteView = require( './views/athlete' );
@@ -34,5 +35,10 @@ var AppView = Backbone.View.extend({
 
 Backbone.$(function() {
   new AppView();
-  Backbone.$( '#athlete_id, #segment_id' ).trigger( 'change' );
+
+  $( '#examples' ).on( 'click', 'a', function() {
+    var $this = $( this );
+    $( '#athlete_id' ).val( $this.data( 'athlete-id' ) ).change();
+    $( '#segment_id' ).val( $this.data( 'segment-id' ) ).change();
+  });
 });

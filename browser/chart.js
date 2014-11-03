@@ -13,6 +13,8 @@ var range = {
   }
 };
 
+var margin = 60;
+
 function Chart( selector, dataSeries, conf ) {
   var $el = $( selector );
   var w = this.w = $el.width();
@@ -20,11 +22,17 @@ function Chart( selector, dataSeries, conf ) {
 
   this.data = [ dataSeries ];
 
-  var x = this.x = d3.time.scale().range([ 0, w - 30 ]);
-  var y = this.y = d3.scale.linear().range([ h - 30, 0 ]);
+  var x = this.x = d3.time.scale().range([ 0, w - margin ]);
+  var y = this.y = d3.scale.linear().range([ h - margin, 0 ]);
 
   this.xAxis = d3.svg.axis().scale( this.x ).orient( 'bottom' );
   this.yAxis = d3.svg.axis().scale( this.y ).orient( 'left' );
+
+  this.yAxis.tickFormat(function( t ) {
+    var m = Math.floor( t / 60 );
+    var s = t % 60;
+    return m + 'm' + s + 's';
+  });
 
   this.line = d3.svg.line().x(function( p ) { return x( p[ 0 ] ); })
                            .y(function( p ) { return y( p[ 1 ] ); });
@@ -34,17 +42,17 @@ function Chart( selector, dataSeries, conf ) {
                 .attr( 'width', w )
                 .attr( 'height', h )
                 .append( 'g' )
-                .attr( 'transform', 'translate(30, 30)' );
+                .attr( 'transform', 'translate(' + margin + ',0)' );
 }
 
 Chart.prototype = {
   draw : function() {
     this.x.domain( this.data[0].domain() );
-    this.y.domain( range.pad( this.data[0].range(), 0.01 ) );
+    this.y.domain( range.pad( this.data[0].range(), 0.1 ) );
 
     this.svg.append( 'g' )
       .attr( 'class', 'x axis' )
-      .attr( 'transform', 'translate(0,' + ( this.h - 60 ) + ')' )
+      .attr( 'transform', 'translate(0,' + ( this.h - margin ) + ')' )
       .call( this.xAxis );
 
     this.svg.append( 'g' )

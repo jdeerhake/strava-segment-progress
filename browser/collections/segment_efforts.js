@@ -1,5 +1,7 @@
 var Backbone = require( 'backbone' );
+var _ = require( 'underscore' );
 var stravaAPI = require( '../strava_api' );
+var Chart = require( '../chart' );
 
 var SegmentEfforts = Backbone.Collection.extend({
 
@@ -15,6 +17,10 @@ var SegmentEfforts = Backbone.Collection.extend({
 
   comparator: 'timestamp',
 
+  initialize: function() {
+    this.listenTo( this, 'add', _.debounce( this.drawChart, 50 ) );
+  },
+
   update: function( athlete, segment ) {
     this.reset();
     this.fetch({ data : {
@@ -24,14 +30,14 @@ var SegmentEfforts = Backbone.Collection.extend({
   },
 
   dataSeries: function() {
-    return this.reduce(function( collect, next ) {
-      collect.push([ next.get( 'timestamp' ), next.get( 'moving_time' ) ]);
-      return collect;
-    }, []);
+    var DataSeries = require( '../data_series' );
+    return new DataSeries( this.invoke( 'dataPoint' ) );
   },
 
   drawChart: function() {
-
+    document.getElementById( 'efforts' ).innerHTML = '';
+    var chart = new Chart( '#efforts', this.dataSeries() );
+    chart.draw();
   }
 
 });

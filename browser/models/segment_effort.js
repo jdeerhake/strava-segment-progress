@@ -11,14 +11,19 @@ var SegmentEffort = Backbone.Model.extend({
   initialize: function( props ) {
     var time = moment( this.get( 'start_date' ) );
 
-    this.set( 'timestamp', time.valueOf() );
+    this.set( 'timestamp', time.unix() );
   },
 
   url: function() {
     return stravaAPI.endpoints.segmentEffort({ id : this.get( 'id' ) });
   },
 
-  sync: stravaAPI.sync
+  sync: stravaAPI.sync,
+
+  dataPoint: function( attr ) {
+    attr = attr || 'moving_time';
+    return [ this.get( 'timestamp' ), this.get( attr ) ];
+  }
 
 });
 

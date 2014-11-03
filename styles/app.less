@@ -23,6 +23,10 @@ input[type=text] {
   padding: 4px;
 }
 
+#app {
+  height: 90%;
+}
+
 #app section {
   margin: 10px;
 
@@ -44,7 +48,7 @@ input[type=text] {
   }
 }
 
-#athlete, #segment {
+#athlete, #segment, #examples {
   width: 20%;
 }
 
@@ -79,5 +83,31 @@ input[type=text] {
 
 #efforts {
   float: right;
-  width: 74%;
+  width: 76%;
+  height: 100%;
+}
+
+#examples {
+  font-size: 10px;
+  text-align: center;
+
+  a:hover {
+    cursor: pointer;
+  }
+}
+
+.axis {
+  font-size: 12px;
+
+  path, line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }

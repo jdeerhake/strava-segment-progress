@@ -3,17 +3,23 @@
 <head>
   <title>Strava Segment Progress</title>
   <link rel='stylesheet' href='./generated/app.css'>
-  <script src='./generated/app.js'></script>
+  <script src='./generated/app.js' charset='utf-8'></script>
 </head>
 <body>
   <main id='app'>
+
+    <section id='examples'>
+      (<a data-segment-id='8162603' data-athlete-id='206661'>example 1</a>)
+      (<a data-segment-id='1554098' data-athlete-id='152705'>example 2</a>)
+      (<a data-segment-id='3716109' data-athlete-id='2404235'>example 3</a>)
+    </section>
 
     <section id='efforts'></section>
 
     <section id='athlete'>
       <header>
         <h2>Athlete</h2>
-        <input id='athlete_id' name='athlete_id' type='text' value=206661>
+        <input id='athlete_id' name='athlete_id' type='text' placeholder='Enter ID'>
       </header>
       <div class='details'></div>
     </section>
@@ -21,7 +27,7 @@
     <section id='segment'>
       <header>
         <h2>Segment</h2>
-        <input id='segment_id' name='segment_id' type='text' value=8162603>
+        <input id='segment_id' name='segment_id' type='text' placeholder='Enter ID'>
       </header>
       <div class='details'></div>
     </section>
