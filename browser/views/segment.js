@@ -4,6 +4,8 @@ var SegmentView = require( './strava_item' ).extend({
 
   template: require( '../../templates/segment.hbs' ),
 
+  invalidMessage: 'Please enter a valid segment ID',
+
   events: {
     'change #segment_id': 'fetchSegmentDetails'
   },

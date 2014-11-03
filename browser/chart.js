@@ -13,7 +13,7 @@ var range = {
   }
 };
 
-var margin = 60;
+var margin = 50;
 
 function Chart( selector, dataSeries, conf ) {
   var $el = $( selector );
@@ -31,7 +31,8 @@ function Chart( selector, dataSeries, conf ) {
   this.yAxis.tickFormat(function( t ) {
     var m = Math.floor( t / 60 );
     var s = t % 60;
-    return m + 'm' + s + 's';
+    if( s === 0 ) { s = '00'; }
+    return m + ':' + s;
   });
 
   this.line = d3.svg.line().x(function( p ) { return x( p[ 0 ] ); })
@@ -42,7 +43,7 @@ function Chart( selector, dataSeries, conf ) {
                 .attr( 'width', w )
                 .attr( 'height', h )
                 .append( 'g' )
-                .attr( 'transform', 'translate(' + margin + ',0)' );
+                .attr( 'transform', 'translate(' + margin + ',10)' );
 }
 
 Chart.prototype = {
