@@ -1,7 +1,9 @@
 var Backbone = require( 'backbone' );
 var _ = require( 'underscore' );
-var stravaAPI = require( '../strava_api' );
-var Chart = require( '../chart' );
+
+var stravaAPI = require( '../lib/strava_api' );
+var Chart = require( '../lib/chart' );
+var DataSeries = require( '../lib/data_series' );
 
 var SegmentEfforts = Backbone.Collection.extend({
 
@@ -30,7 +32,6 @@ var SegmentEfforts = Backbone.Collection.extend({
   },
 
   dataSeries: function() {
-    var DataSeries = require( '../data_series' );
     return new DataSeries( this.invoke( 'dataPoint' ) );
   },
 

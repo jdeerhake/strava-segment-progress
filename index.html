@@ -8,7 +8,9 @@
 <body>
   <main id='app'>
 
-    <section id='efforts'></section>
+    <section id='efforts' class='strava_item'>
+      Enter Strava segment & athlete IDs to the left or click on an example link.
+    </section>
 
     <section id='examples'>
       (<a data-segment-id='8162603' data-athlete-id='206661'>example 1</a>)
@@ -16,7 +18,7 @@
       (<a data-segment-id='3716109' data-athlete-id='2404235'>example 3</a>)
     </section>
 
-    <section id='athlete'>
+    <section id='athlete' class='strava_item'>
       <header>
         <h2>Athlete</h2>
         <input id='athlete_id' name='athlete_id' type='text' placeholder='Enter ID'>
@@ -24,7 +26,7 @@
       <div class='details'></div>
     </section>
 
-    <section id='segment'>
+    <section id='segment' class='strava_item'>
       <header>
         <h2>Segment</h2>
         <input id='segment_id' name='segment_id' type='text' placeholder='Enter ID'>

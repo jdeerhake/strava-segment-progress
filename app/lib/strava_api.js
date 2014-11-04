@@ -3,7 +3,7 @@ var url = require( 'url' );
 
 var protocol = 'https';
 var baseURL = 'www.strava.com';
-var accessToken = require( './key' ).strava;
+var accessToken = require( '../key' ).strava;
 
 
 // Backbone sync method override for Strava JSONP API

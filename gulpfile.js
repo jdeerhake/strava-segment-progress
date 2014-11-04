@@ -5,7 +5,7 @@ var less = require( 'gulp-less' );
 
 
 var paths = {
-    scripts : [ 'browser/**/*' ],
+    scripts : [ 'app/**/*' ],
     less    : [ 'styles/*' ],
     output : 'generated'
 };
@@ -13,21 +13,21 @@ var paths = {
 var conf = {
   browserify : {
       source: paths.scripts,
-      debug: true,
+      debug: false,
       transform: 'hbsfy'
   }
 };
 
 
 gulp.task( 'scripts', function() {
-    gulp.src( 'browser/app.js' )
+    gulp.src( 'app/app.js' )
         .pipe( plumber() )
         .pipe( browserify( conf.browserify ) )
         .pipe( gulp.dest( paths.output ) );
 });
 
 gulp.task( 'stylesheets', function() {
-    gulp.src( paths.less )
+    gulp.src( 'styles/app.less' )
         .pipe( plumber() )
         .pipe( less() )
         .pipe( gulp.dest( paths.output ) );

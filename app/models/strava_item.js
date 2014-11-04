@@ -1,6 +1,6 @@
 var Backbone = require( 'backbone' );
 
-var stravaAPI = require( '../strava_api' );
+var stravaAPI = require( '../lib/strava_api' );
 
 var StravaItem = Backbone.Model.extend({
 

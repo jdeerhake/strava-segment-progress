@@ -1,4 +1,4 @@
-var stravaAPI = require( '../strava_api' );
+var stravaAPI = require( '../lib/strava_api' );
 
 var Segment = require( './strava_item' ).extend({
 

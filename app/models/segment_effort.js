@@ -1,7 +1,7 @@
 var Backbone = require( 'backbone' );
 var moment = require( 'moment' );
 
-var stravaAPI = require( '../strava_api' );
+var stravaAPI = require( '../lib/strava_api' );
 
 
 var SegmentEffort = Backbone.Model.extend({
